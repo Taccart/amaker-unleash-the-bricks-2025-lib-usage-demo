@@ -1,17 +1,30 @@
 # Unleash the bricks 2025 : bot demo code
 ## Content
 This comes with preinstalled libraries:
-* Huskylens
-* amaker-mortor
-* Unleash the bricks 
+* [Huskylens](https://github.com/DFRobot/pxt-DFRobot_HuskyLens/releases/tag/v2.0.7)
+* [amaker-motor](https://github.com/Taccart/amaker-motor/)
+* [Unleash the bricks](https://github.com/Taccart/amaker-unleash-the-bricks-lib/releases/tag/v1.0.0)
   * UTB Bot : all about your bot
-  * UTB Radio : to adjust radio channel
+  * UTB Radio : to adjust radio channel (only used at start)
 
 You will see in the code 
-* how to declare you `belong to a team`
-* how to register your callback code when  `START`, `STOP`, or `DANGER` message is received
-* hot change your `bot status` and change `number of collected balls`
-* how to handle regular `emit status`
+* changes the radio group` with **logo long press**
+* to declare you belong to a team
+* to register your callback code on `START`, `STOP`, or `DANGER`
+* to change bot status
+* to increase number of collected balls
+* to emit status
+
+Also, this demo code can simulate controller using button :
+| button | action | 
+| ------ | ------ |
+| A      | call code for START |
+| B      | call code for DANGER  |
+| A+B    | call code for STOP  |
+
+
+
+
 
 !!! BEFORE YOU RUN !!! you must change the content of `setSpeed` to address your motors connection pin :)
 
