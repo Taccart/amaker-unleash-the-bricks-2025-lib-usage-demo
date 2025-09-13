@@ -16,7 +16,7 @@ You will see in the code
 !!! BEFORE YOU RUN !!! you must change the content of `setSpeed` to address your motors connection pin :)
 
 
-> Open this page at [https://taccart.github.io/unleashthebricks2025botdemocode/](https://taccart.github.io/unleashthebricks2025botdemocode/)
+> Open this page at [https://taccart.github.io/amaker-unleash-the-bricks-2025-lib-usage-demo/](https://taccart.github.io/amaker-unleash-the-bricks-2025-lib-usage-demo/)
 
 # Repo infos
 ## Use as Extension
@@ -26,7 +26,7 @@ This repository can be added as an **extension** in MakeCode.
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
-* search for **https://github.com/taccart/unleashthebricks2025botdemocode** and import
+* search for **https://github.com/taccart/amaker-unleash-the-bricks-2025-lib-usage-demo** and import
 
 ## Edit this project
 
@@ -34,7 +34,7 @@ To edit this repository in MakeCode.
 
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **Import** then click on **Import URL**
-* paste **https://github.com/taccart/unleashthebricks2025botdemocode** and click import
+* paste **https://github.com/taccart/amaker-unleash-the-bricks-2025-lib-usage-demo** and click import
 
 #### Metadata (used for search, rendering)
 
