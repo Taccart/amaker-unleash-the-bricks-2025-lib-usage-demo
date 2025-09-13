@@ -83,7 +83,6 @@ UTBBot.onMessageStartReceived(function () {
 })
 let log_line = 0
 let receivedString = ""
-music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
 basic.showLeds(`
     . . . . .
     . # . # .
