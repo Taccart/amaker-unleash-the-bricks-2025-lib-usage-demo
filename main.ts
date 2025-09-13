@@ -2,6 +2,12 @@
 UTBBot.onMessageStopReceived(function () {
     myStopHandler()
 })
+function setSpeeds (A: number, B: number, C: number, D: number) {
+    amaker_motor.servoSpeed(amaker_motor.Servos.S5, A)
+    amaker_motor.servoSpeed(amaker_motor.Servos.S6, B)
+    amaker_motor.servoSpeed(amaker_motor.Servos.S7, C)
+    amaker_motor.servoSpeed(amaker_motor.Servos.S8, D)
+}
 function myDangerHandler () {
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
     debug(">Danger<")
@@ -12,9 +18,6 @@ function myDangerHandler () {
 UTBBot.onMessageDangerReceived(function () {
     myDangerHandler()
 })
-/**
- * Just to be able to simulate, attach Start to button A and stop to loud sound or hurt
- */
 input.onButtonPressed(Button.A, function () {
     myStartHandler()
 })
@@ -34,15 +37,13 @@ function myStartHandler () {
 function debug (text: string) {
     console.debug(text)
 }
-// CHANGE THIS CODE TO MATCH  YOUR MOTORS CONNECTIONS
-// 
 function setSpeed (speed: number) {
     amaker_motor.servoSpeed(amaker_motor.Servos.S5, speed)
     amaker_motor.servoSpeed(amaker_motor.Servos.S6, speed)
     amaker_motor.servoSpeed(amaker_motor.Servos.S7, speed)
     amaker_motor.servoSpeed(amaker_motor.Servos.S8, speed)
 }
-input.onSound(DetectedSound.Loud, function () {
+input.onButtonPressed(Button.B, function () {
     myStopHandler()
 })
 function initializeLogToScreen () {
@@ -67,9 +68,6 @@ function myStopHandler () {
         . . . . .
         `)
 }
-input.onGesture(Gesture.ThreeG, function () {
-    myStopHandler()
-})
 UTBBot.onMessageStartReceived(function () {
     myStartHandler()
 })
