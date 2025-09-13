@@ -9,8 +9,10 @@ function setSpeeds (A: number, B: number, C: number, D: number) {
     amaker_motor.servoSpeed(amaker_motor.Servos.S8, D)
 }
 function myDangerHandler () {
-    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funeral), music.PlaybackMode.InBackground)
     debug(">Danger<")
+    for (let index = 0; index < 4; index++) {
+        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.BaDing), music.PlaybackMode.InBackground)
+    }
     UTBBot.newBotStatus(UTBBotCode.BotStatus.ToShelter)
     basic.showIcon(IconNames.Skull)
 }
@@ -22,8 +24,8 @@ input.onButtonPressed(Button.A, function () {
     myStartHandler()
 })
 function myStartHandler () {
-    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Funk), music.PlaybackMode.InBackground)
     debug(">Start<")
+    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
     setSpeed(20)
     UTBBot.newBotStatus(UTBBotCode.BotStatus.Search)
     basic.showLeds(`
@@ -56,7 +58,7 @@ huskylens.clearOSD;
 console.addListener(log_to_screen)
 }
 function myStopHandler () {
-    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.BaDing), music.PlaybackMode.InBackground)
+    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerDown), music.PlaybackMode.InBackground)
     setSpeed(0)
     debug(">Stop<")
     UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
@@ -71,8 +73,8 @@ function myStopHandler () {
 UTBBot.onMessageStartReceived(function () {
     myStartHandler()
 })
-let log_line = 0
 let receivedString = ""
+let log_line = 0
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
 basic.showLeds(`
     . . . . .

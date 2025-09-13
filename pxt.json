@@ -5,7 +5,7 @@
         "core": "*",
         "radio": "*",
         "amaker-motor": "github:Taccart/amaker-motor#0.0.4",
-        "amaker-utb-lib": "github:taccart/amaker-unleash-the-bricks-lib#9cdf0ee9512b49611ab0608c2e02e1a77b95dc12",
+        "amaker-utb-lib": "github:taccart/amaker-unleash-the-bricks-lib#v1.0.0",
         "Huskylens": "github:dfrobot/pxt-dfrobot_huskylens#v2.0.7",
         "microphone": "*"
     },
