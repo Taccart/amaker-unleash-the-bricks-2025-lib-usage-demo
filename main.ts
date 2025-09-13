@@ -8,6 +8,10 @@ function setSpeeds (A: number, B: number, C: number, D: number) {
     amaker_motor.servoSpeed(amaker_motor.Servos.S7, C)
     amaker_motor.servoSpeed(amaker_motor.Servos.S8, D)
 }
+input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
+    UTBRadio.incrementRadioGroup()
+    basic.showString("" + (UTBRadio.getRadioGroup()))
+})
 function myDangerHandler () {
     debug(">Danger<")
     for (let index = 0; index < 4; index++) {
@@ -45,8 +49,11 @@ function setSpeed (speed: number) {
     amaker_motor.servoSpeed(amaker_motor.Servos.S7, speed)
     amaker_motor.servoSpeed(amaker_motor.Servos.S8, speed)
 }
-input.onButtonPressed(Button.B, function () {
+input.onButtonPressed(Button.AB, function () {
     myStopHandler()
+})
+input.onButtonPressed(Button.B, function () {
+    myDangerHandler()
 })
 function initializeLogToScreen () {
     function log_to_screen(priority: ConsolePriority, msg: string) {
@@ -73,8 +80,8 @@ function myStopHandler () {
 UTBBot.onMessageStartReceived(function () {
     myStartHandler()
 })
-let receivedString = ""
 let log_line = 0
+let receivedString = ""
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
 basic.showLeds(`
     . . . . .
@@ -93,6 +100,7 @@ basic.showLeds(`
     # . # . #
     `)
 UTBBot.initAsBot(UTBBotCode.TeamName.RequiemForABot)
+basic.showString("" + (UTBRadio.getRadioGroup()))
 UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
 initializeLogToScreen()
 basic.showLeds(`
