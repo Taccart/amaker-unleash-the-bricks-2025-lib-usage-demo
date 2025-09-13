@@ -71,8 +71,8 @@ function myStopHandler () {
 UTBBot.onMessageStartReceived(function () {
     myStartHandler()
 })
-let receivedString = ""
 let log_line = 0
+let receivedString = ""
 music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Entertainer), music.PlaybackMode.InBackground)
 basic.showLeds(`
     . . . . .
