@@ -7,15 +7,19 @@ This comes with preinstalled libraries:
   * UTB Bot : all about your bot
   * UTB Radio : to adjust radio channel (only used at start)
 
+Code allows to **changes the radio group with logo long press**
+to get the same radio group as UTB controller at start..
+
+
 You will see in the code 
-* changes the radio group` with **logo long press**
 * to declare you belong to a team
 * to register your callback code on `START`, `STOP`, or `DANGER`
 * to change bot status
 * to increase number of collected balls
 * to emit status
 
-Also, this demo code can simulate controller using button :
+Also, this **demo code can simulate controller using buttons** : 
+
 | button | action | 
 | ------ | ------ |
 | A      | call code for START |
@@ -24,9 +28,7 @@ Also, this demo code can simulate controller using button :
 
 
 
-
-
-!!! BEFORE YOU RUN !!! you must change the content of `setSpeed` to address your motors connection pin :)
+__!!! BEFORE YOU RUN !!! you must change the content of `setSpeed` to address your motors connection pin :)__
 
 
 > Open this page at [https://taccart.github.io/amaker-unleash-the-bricks-2025-lib-usage-demo/](https://taccart.github.io/amaker-unleash-the-bricks-2025-lib-usage-demo/)
