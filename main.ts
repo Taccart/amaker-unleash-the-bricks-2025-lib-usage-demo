@@ -10,13 +10,12 @@ function setSpeeds (A: number, B: number, C: number, D: number) {
 }
 input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     UTBRadio.incrementRadioGroup()
-    basic.showString("" + (UTBRadio.getRadioGroup()))
+    UTBRadio.showRadioGroup()
 })
 function myDangerHandler () {
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.DANGER)
     debug(">Danger<")
-    for (let index = 0; index < 4; index++) {
-        music._playDefaultBackground(music.builtInPlayableMelody(Melodies.BaDing), music.PlaybackMode.InBackground)
-    }
+    music._playDefaultBackground(music.builtInPlayableMelody(Melodies.BaDing), music.PlaybackMode.InBackground)
     UTBBot.newBotStatus(UTBBotCode.BotStatus.ToShelter)
     basic.showIcon(IconNames.Skull)
 }
@@ -28,6 +27,7 @@ input.onButtonPressed(Button.A, function () {
     myStartHandler()
 })
 function myStartHandler () {
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.START)
     debug(">Start<")
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
     setSpeed(20)
@@ -65,9 +65,10 @@ huskylens.clearOSD;
 console.addListener(log_to_screen)
 }
 function myStopHandler () {
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.STOP)
+    debug(">Stop<")
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerDown), music.PlaybackMode.InBackground)
     setSpeed(0)
-    debug(">Stop<")
     UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
     basic.showLeds(`
         . . . . .
@@ -100,7 +101,6 @@ basic.showLeds(`
     # . # . #
     `)
 UTBBot.initAsBot(UTBBotCode.TeamName.RequiemForABot)
-basic.showString("" + (UTBRadio.getRadioGroup()))
 UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
 initializeLogToScreen()
 basic.showLeds(`
@@ -110,11 +110,12 @@ basic.showLeds(`
     . # . # .
     # . # . #
     `)
-basic.forever(function () {
-	
+UTBRadio.showRadioGroup()
+loops.everyInterval(15000, function () {
+    debug("<hearbeat>")
+    UTBBot.emitHeartBeat()
 })
-control.inBackground(function () {
+loops.everyInterval(60000, function () {
     debug("<status>")
     UTBBot.emitStatus()
-    basic.pause(5000)
 })
