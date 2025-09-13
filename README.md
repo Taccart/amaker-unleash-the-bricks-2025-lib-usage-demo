@@ -8,10 +8,10 @@ This comes with preinstalled libraries:
   * UTB Radio : to adjust radio channel
 
 You will see in the code 
-* how to declare you belong to a team
-* how to register your callback code when  `START`, `STOP, or `DANGER` message is received
-* hot change your bot status and change number of collected balls
-* how to handle regular status emit
+* how to declare you `belong to a team`
+* how to register your callback code when  `START`, `STOP`, or `DANGER` message is received
+* hot change your `bot status` and change `number of collected balls`
+* how to handle regular `emit status`
 
 !!! BEFORE YOU RUN !!! you must change the content of `setSpeed` to address your motors connection pin :)
 
