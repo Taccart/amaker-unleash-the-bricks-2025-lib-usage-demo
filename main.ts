@@ -2,119 +2,69 @@
 UTBBot.onMessageStopReceived(function () {
     myStopHandler()
 })
-function setSpeeds (A: number, B: number, C: number, D: number) {
-    amaker_motor.servoSpeed(amaker_motor.Servos.S5, A)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S6, B)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S7, C)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S8, D)
-}
 input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     UTBRadio.incrementRadioGroup()
     UTBRadio.showRadioGroup()
 })
 function myDangerHandler () {
-    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.DANGER)
-    debug(">Danger<")
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.BaDing), music.PlaybackMode.InBackground)
-    UTBBot.newBotStatus(UTBBotCode.BotStatus.ToShelter)
     basic.showIcon(IconNames.Skull)
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.DANGER)
+    UTBBot.newBotStatus(UTBBotCode.BotStatus.TO_SAFETY)
 }
 // triggered when DANGER message is received
 UTBBot.onMessageDangerReceived(function () {
     myDangerHandler()
 })
 input.onButtonPressed(Button.A, function () {
-    myStartHandler()
+    UTBRadio.emitLog("" + UTBBot.incrementCollectedBallsCount(1))
 })
 function myStartHandler () {
-    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.START)
-    debug(">Start<")
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerUp), music.PlaybackMode.InBackground)
-    setSpeed(20)
-    UTBBot.newBotStatus(UTBBotCode.BotStatus.Search)
     basic.showLeds(`
-        . . . . .
-        . . # . .
+        . # . . .
+        . # # . .
         . # # # .
-        # # # # #
-        . . . . .
+        . # # . .
+        . # . . .
         `)
-}
-function debug (text: string) {
-    console.debug(text)
-}
-function setSpeed (speed: number) {
-    amaker_motor.servoSpeed(amaker_motor.Servos.S5, speed)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S6, speed)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S7, speed)
-    amaker_motor.servoSpeed(amaker_motor.Servos.S8, speed)
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.START)
+    UTBBot.newBotStatus(UTBBotCode.BotStatus.SEARCHING)
 }
 input.onButtonPressed(Button.AB, function () {
-    myStopHandler()
+    UTBBotCode.resetCollectCount()
 })
 input.onButtonPressed(Button.B, function () {
-    myDangerHandler()
+	
 })
-function initializeLogToScreen () {
-    function log_to_screen(priority: ConsolePriority, msg: string) {
-    huskylens.writeOSD(msg, 0, log_line * 20)
-    log_line = log_line + 1
-    if (log_line == 19) { log_line = 1 }
-}
-huskylens.clearOSD;
-console.addListener(log_to_screen)
-}
 function myStopHandler () {
-    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.STOP)
-    debug(">Stop<")
     music._playDefaultBackground(music.builtInPlayableMelody(Melodies.PowerDown), music.PlaybackMode.InBackground)
-    setSpeed(0)
-    UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
     basic.showLeds(`
-        . . . . .
-        . # # # .
-        . # # # .
-        . # # # .
-        . . . . .
+        # # . # #
+        # # . # #
+        # # . # #
+        # # . # #
+        # # . # #
         `)
+    UTBBot.emitAcknowledgement(UTBBotCode.IntercomType.STOP)
+    UTBBot.newBotStatus(UTBBotCode.BotStatus.STOPPED)
 }
 UTBBot.onMessageStartReceived(function () {
     myStartHandler()
 })
-let log_line = 0
-let receivedString = ""
 basic.showLeds(`
     . . . . .
     . # . # .
-    . . . . .
+    . # . # .
     . # . # .
     . . . . .
     `)
-huskylens.initI2c()
-huskylens.initMode(protocolAlgorithm.ALGORITHM_TAG_RECOGNITION)
-basic.showLeds(`
-    # . # . #
-    . . . . .
-    # . # . #
-    . . . . .
-    # . # . #
-    `)
-UTBBot.initAsBot(UTBBotCode.TeamName.RequiemForABot)
-UTBBot.newBotStatus(UTBBotCode.BotStatus.Idle)
-initializeLogToScreen()
-basic.showLeds(`
-    # . # . #
-    . # . # .
-    # . # . #
-    . # . # .
-    # . # . #
-    `)
+UTBBot.initAsBot(UTBBotCode.TeamName.TeslaCybertruck)
+UTBBot.newBotStatus(UTBBotCode.BotStatus.WAITING)
 UTBRadio.showRadioGroup()
-loops.everyInterval(15000, function () {
-    debug("<hearbeat>")
+loops.everyInterval(1000, function () {
     UTBBot.emitHeartBeat()
 })
-loops.everyInterval(60000, function () {
-    debug("<status>")
+loops.everyInterval(5000, function () {
     UTBBot.emitStatus()
 })
